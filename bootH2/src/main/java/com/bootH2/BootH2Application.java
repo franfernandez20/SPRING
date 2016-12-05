@@ -1,5 +1,5 @@
-package com.bootH2;
 
+package com.bootH2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
