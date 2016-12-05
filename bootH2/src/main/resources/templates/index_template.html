@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+     <title>HAMP</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Lista Productos</h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"><a href="/product/${product.id}">Codigo</a></td>
+
+                <td th:text="${product.name}">Name</td>
+                <td th:text="${product.apellidos}">Apeliidos</td>
+                
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

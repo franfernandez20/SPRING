@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="page-header">
+	  <h1>Example page header <small>Subtext for header</small></h1>
+	</div>
+
+	
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Cliente</h3>
+  </div>
+  <div class="panel-body">
+    <h4>Nombre:    <span th:text="${cliente.name}"></span></h4>
+    <h4>Apellido:    <span th:text="${cliente.apellidos}"></span></h4>
+  </div>
+</div>
+</body>
+</html>
