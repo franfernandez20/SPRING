@@ -1,9 +1,13 @@
 package com.ffp.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,35 +15,54 @@ import javax.persistence.Table;
 public class Pais {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+//  @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idPais;
 	
 	private String nombre;
-	private String nacionalidad;
-	private String  idioma ;
+	
+	@OneToMany(mappedBy="pais", targetEntity=Provincia.class,fetch = FetchType.EAGER)
+	private List<Provincia> listProvincia;
 	
 	
 	
 	
-	public Pais(Long id) {
-		super();
-		this.id = id;
-	}
+	//----------------------------------------------------------------------
+    // CONSTRUCTOR(S)
+    //----------------------------------------------------------------------
 	public Pais() {
 		super();
 		// TODO Auto-generated constructor stub
+	}	
+	public Pais(Long id) {
+		super();
+		this.idPais = id;
 	}
-	public Pais(String nombre, String nacionalidad, String idioma) {
+	public Pais(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.nacionalidad = nacionalidad;
-		this.idioma = idioma;
 	}
+	public Pais( String nombre, List<Provincia> lprovincia){
+		
+		this.nombre=nombre;
+		this.listProvincia= lprovincia;
+	}
+	
+	//----------------------------------------------------------------------
+    // GETTERS & SETTERS 
+    //----------------------------------------------------------------------
+//	public List<Provincia> getListProvincia() {
+//		return listProvincia;
+//	}
+//	public void setListProvincia(List<Provincia> listProvincia) {
+//		this.listProvincia = listProvincia;
+//	}	
+	
 	public Long getId() {
-		return id;
+		return idPais;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		this.idPais = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -47,19 +70,16 @@ public class Pais {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getNacionalidad() {
-		return nacionalidad;
+	public List<Provincia> getListProvincia() {
+		return listProvincia;
 	}
-	public void setAnacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
+	public void setListProvincia(List<Provincia> listProvincia) {
+		this.listProvincia = listProvincia;
 	}
-	public String getIdioma() {
-		return idioma;
+	@Override
+	public String toString() {
+		return "Pais [idPais=" + idPais + ", nombre=" + nombre + "]";
 	}
-	public void setIdioma(String idioma) {
-		this.idioma = idioma;
-	} 
 	
 	
-
 }

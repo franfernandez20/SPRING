@@ -5,5 +5,8 @@
 			
 	<bean name="paisRepository" class="com.ffp.repositories.PaisRepository">	
 	</bean>
+	<bean name="provinciaRepository" class="com.ffp.repositories.ProvinciaRepository">	
+	</bean>
+	
 		
 </beans>
