@@ -24,6 +24,8 @@
 	</c:forEach> 
 	</table>
 	
-<a href="/spring/menu">volver</a> 
+<a href="/spring/menu">volver a menu </a>
+<br>
+<a href="/spring/pruebas">volver a pruebas </a> 
 </body>
 </html>

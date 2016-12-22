@@ -6,14 +6,14 @@
 </head>
 <body>
  
-<form action="recibir">
- Nombre:<input type="text" name="nombre"> 
+<form action="menuview">
+ Pais:<input type="text" name="pais"> 
   
  <input type="submit" />
  </form>
  <br/>
  <form action="recibir" method="post">
- Nombre:<input type="text" name="nombre"> 
+ Nombre:<input type="text" name="name"> 
  <br/>
  Lenguaje:<select name="lenguaje">
  <option>selecciona</option>

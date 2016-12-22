@@ -32,7 +32,7 @@ public class MenuController {
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Muestra la lista de paises sacados de la clase MyDB
 	 */
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(Locale locale, Model model) {
@@ -50,26 +50,18 @@ public class MenuController {
 		}
 		
 		model.addAttribute("listaPais",listaPais);
-		
-		
-		
-		
-		//model.addAttribute("listPais",mydb.getTablaPais());
-		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-		
+				
 		return "menu";
 	}
-	
+	/**	  
+	 * @param pais // Lo recibe desde la URL /spring/menuview?pais=X
+	 * @return vista provincias. A la que se la ha pasado un lista de las 
+	 * 							provincias obtenidas apartir del nombre del pais.
+	 */
 	@RequestMapping(value = "/menuview")
 	public String menuView(@RequestParam(value="pais")String pais, Locale locale, Model model) {
 		
-		System.out.println("Dentro menuView");
+		System.out.println("Acceso a menuView");
 		Pais aux = null;
 		List<Pais> lPais = mydb.getTablaPais();
 		for (Pais pais1 : lPais) {
@@ -81,21 +73,70 @@ public class MenuController {
 		
 		return "provincias";
 	}
-	
-	@RequestMapping(value = "/recibir", method=RequestMethod.POST, params={"lenguaje=Java"})
-	public String recibir( Locale locale, Model model) {
+	/**
+	 * -----METODO DE PRUEBAS-----
+	 * @param name -> Llega desde pruebas.jsp a traves de un metodo post.
+	 * 				   @Requestaram(value=" name") lo recoge, name debe encajar con el nombre que 
+	 * 					se le da en el jsp.
+	 * 	jsp-->		<form action="recibir" method="post">Nombre:<input type="text" name="name">
+	 * @return
+	 */
+	@RequestMapping(value = "/recibir", method=RequestMethod.POST)
+	public String recibirPOST(@RequestParam(value="name")String name,
+							  @RequestParam(value="lenguaje") String lenguaje,
+							  @RequestParam(value="nivel") String nivel,
+								Locale locale, Model model) {
 		
-		System.out.println("Dentro pruebas");
+		System.out.println("Acceso a  recibirPOST");
 		
-		model.addAttribute("enlace","enlace OK");
+		model.addAttribute("enlace","Enlace desde recibir. "
+								  + "Elemento name :"+name
+								  +" Elemento lenguaje :"+lenguaje
+								  +" Elemento nivel :"+nivel);
 		
 		
 		return "provincias";
 	}
+	
+	/**
+	 * -----METODO DE PRUEBAS-----
+	 * Metodo solo para entrar a la vista de pruebas
+	 * la cual tiene los formularios para las pruebas
+	 */
+	@RequestMapping(value = "/*")
+	public String pruebas(Locale locale, Model model) {
+		
+		System.out.println("Dentro pruebas");	
+		
+		return "pruebas";
+	}
+	
+	
+	/**
+	 * -----METODO DE PRUEBAS-----
+	 *  recibe peticion GET --> /pb?name=nombre
+	 *	te envia a la pag provincias pasandole el string nombre a la vista 
+	 */
 	@RequestMapping(value = "/pb")
 	public String pb(@RequestParam(value="name") String name, Locale locale, Model model) {
 		
-		System.out.println("Dentro pb");
+		System.out.println("Acceso a pb");
+		
+		model.addAttribute("enlace",name);
+		
+		
+		return "provincias";
+	}
+	/**
+	 * -----METODO DE PRUEBAS-----
+	 *  recibe peticion GET --> /pb2/nombre
+	 *	te envia a la pag provincias pasandole el string nombre a la vista 
+	 *	mismo funcionamiento que el metodo anterior pero esta vez usando la anotacion @PathVariable
+	 */
+	@RequestMapping(value = "/pb2/{name}")
+	public String pbVersion2(@PathVariable String name, Locale locale, Model model) {
+		
+		System.out.println("Acceso a  pbVersion2");
 		
 		model.addAttribute("enlace",name);
 		
@@ -103,7 +144,7 @@ public class MenuController {
 		return "provincias";
 	}
 	
-	
+	//----------------------------------------------------------------------------------------------------------------------//
 	/**TRATAMIENTO USUARIO 
 	 * TODO
 	 * **/
