@@ -1,8 +1,7 @@
 package com.ffp.spring.controllers;
 
 
-import java.text.DateFormat;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.ffp.spring.User;
 import com.ffp.spring.entities.Pais;
@@ -73,6 +72,7 @@ public class MenuController {
 		
 		return "provincias";
 	}
+
 	/**
 	 * -----METODO DE PRUEBAS-----
 	 * @param name -> Llega desde pruebas.jsp a traves de un metodo post.
@@ -83,16 +83,17 @@ public class MenuController {
 	 */
 	@RequestMapping(value = "/recibir", method=RequestMethod.POST)
 	public String recibirPOST(@RequestParam(value="name")String name,
-							  @RequestParam(value="lenguaje") String lenguaje,
-							  @RequestParam(value="nivel") String nivel,
+							  @RequestParam(value="opcion") String opcion,
+							 
 								Locale locale, Model model) {
 		
 		System.out.println("Acceso a  recibirPOST");
 		
+		
 		model.addAttribute("enlace","Enlace desde recibir. "
-								  + "Elemento name :"+name
-								  +" Elemento lenguaje :"+lenguaje
-								  +" Elemento nivel :"+nivel);
+								  + "                 Elemento name :"+name
+								  +"                  Elemento lenguaje :"+opcion
+									);
 		
 		
 		return "provincias";

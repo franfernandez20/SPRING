@@ -12,6 +12,8 @@
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<hibernate.version>5.0.6.Final</hibernate.version>
+		<spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -32,7 +34,63 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+		
+		
+		
+		
+		
+		
+		<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>		
+		</dependency>		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--  DEPENDENCIAS AGREGADAS PARA INTEGRACION CON MODEL 
+		
+		 for JPA, use hibernate-entitymanager instead of hibernate-core 
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>		
+		</dependency>		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>	
+		<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${hibernate.version}</version>
+		</dependency>
+			
+		 mysql driven  
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.39</version>
+		</dependency>
+		
+		 JPA 
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		   FIN AGREGADAS   -->
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

@@ -3,25 +3,44 @@
 
 <html>
 <head>
-	<title>Menu</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Paises</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
 </head>
 <body>
-<h1>
-	Seleccion de Pais  
-</h1>
+<ol class="breadcrumb">
+  <li><a href="/spring/pruebas">Home</a></li>
+  <li><a href="/spring/menu">Paises</a></li>
+  
+  <li class="active">Pruebas</li>
+</ol>
 
-	<table> 
-		<tr> 
-		<th> Paises </th> 
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Paises</div>
+	  
+
+  <!-- Table -->
+  <table class="table"> 
+	 
 			
-		</tr> 
-	<c:forEach items="${listaPais}" var="pais"> 
+		
+		<c:forEach items="${listaPais}" var="pais"> 
 		<tr> 
-		<td> <a href="menuview?pais=<c:out value="${pais.nombre}"/>"><c:out value="${pais.nombre}"/></a> </td> 
-		
-		
+			<td> 
+				<a href="menuview?pais=<c:out value="${pais.nombre}"/>">
+				<c:out value="${pais.nombre}"/>
+				</a> 
+			</td> 		
 		</tr> 
-	</c:forEach> 
+		</c:forEach> 
 	</table> 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
 </body>
 </html>

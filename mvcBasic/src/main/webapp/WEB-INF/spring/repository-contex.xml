@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+                           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+                           
+<!-- JPA Repositories -->
+    <jpa:repositories base-package="com.ffp.repositories" 
+    				transaction-manager-ref="transactionManagerRepository"/>
+    				
+<bean id="dataSourceRepository" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" /><!-- Driver necesario para la BD que se use -->
+	    <property name="url" value="jdbc:mysql://localhost:3306/prueba" />
+	    <property name="username" value="root" />
+	    <property name="password" value="1234" />
+</bean>	 				                           
+
+	<!-- entityManagerFactory -->
+	<!-- evita tener que usa archivos adicionales para configurar su capa de persistencia. 
+	No necesitaremos un fichero persistence.xml ni cualquier otro archivo de mapeo. -->
+	
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    	<property name="dataSource" ref="dataSourceRepository"/>
+    	   	
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" >
+            	<property name="showSql" value="true"/>
+            	<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/><!-- Hay que indicarle el dialecto con el que trabaja la BD usada "MySQLDialect  PostgreSQLDialect" -->
+            </bean>
+        </property>  
+        
+        <property name="packagesToScan" value ="com.ffp.entities" />
+        <!-- 
+        <property name="jpaProperties">
+        	<props>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+        </property> 
+        --> 
+    </bean>
+    
+    <!-- transactionManager -->
+    <bean id="transactionManagerRepository" class="org.springframework.orm.jpa.JpaTransactionManager" 
+    		p:entityManagerFactory-ref="entityManagerFactory"/>                           
+                           
+</beans>
